@@ -7,7 +7,7 @@ const ImageLinkForm = ({onclick,onButtonSubmit}) =>{
 
 <div>
 
-<p className= 'f4'>Paste the url here to detect face in the Image. </p>
+<p className= 'f4  b-ns'>Paste the url here to detect face in the Image. </p>
 		<div className='center'>
 		<div className= 'br3 shadow-5 center pa4'>
 

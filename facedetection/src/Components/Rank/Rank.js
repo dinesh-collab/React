@@ -8,12 +8,10 @@ const Rank = () =>
 {
 	return (
 			<div className='ma4 mt0'>
-			<div>
-			{'Hello your name is Dinesh'}
+			<div className ='f3'>
+			{'This Website detects the Face in the image provided by Url'}
 			</div>
-			<div>
-				{'#1'}
-			</div>
+			
 			</div>
 
 		);
