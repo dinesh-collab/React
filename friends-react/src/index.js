@@ -4,10 +4,19 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'tachyons';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
 //import {robots} from './robots';
+import {searchRobots} from './Reducers';
+
+
+const store = createStore(searchRobots);
 
 ReactDOM.render(
+
+<Provider store={store} >
 	<App />
+	</Provider>
  ,document.getElementById('root')
 );
 
