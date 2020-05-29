@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+import util from "../util";
 
 export default class Products extends React.Component {
   
@@ -16,8 +16,9 @@ export default class Products extends React.Component {
               {product.title}
             </p>
             <div>
-                <b> {'$' + product.price} </b>
+                <b> {util.formatCurrency(product.price)} </b>
                 <button className ='btn btn-primary example hoverable' onClick = {(e)=> this.props.handleAddToCart(e,product)}> add to cart </button>
+                
             </div>
           </a>
         </div>

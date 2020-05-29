@@ -10,15 +10,22 @@ class App extends React.Component {
     super(props);
     this.state = {
       filteredProducts : [],
-     products:[]
+     products:[],
+     cartItems :[]
          };
     this.handleChangeSort = this.handleChangeSort.bind(this);
     this.handleChangeSize = this.handleChangeSize.bind(this);
+        this.handleAddToCart = this.handleAddToCart.bind(this);
+            this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
   }
 
   componentDidMount(){
     fetch('http://localhost:3000/products').then(res => res.json()).then(data => this.setState ({products : data,
       filteredProducts :data}));
+
+    if(localStorage.getItem('cartItems')){
+      this.setState({cartItems : JSON.parse(localStorage.getItem('cartItems'))})
+    }
   }
 
   handleChangeSort (e){
@@ -52,6 +59,41 @@ class App extends React.Component {
     })
   }
 
+  handleAddToCart (e,product){
+this.setState (state => {
+ const cartItems = state.cartItems;
+  let productAlreadyInCart = false;
+
+  cartItems.forEach((item) => {
+    if (item.id === product.id) {
+    
+      productAlreadyInCart = true;
+       item.count+=1;
+
+    }
+  });
+
+  if (!productAlreadyInCart) {
+    cartItems.push({ ...product, count: 1 });
+  }
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+return cartItems;
+
+
+})
+  }
+
+  handleRemoveFromCart(e,item){
+    this.setState(state => {
+
+      const cartItems = state.cartItems.filter(ele => ele.id !== item.id);
+      localStorage.setItem('cartItems',cartItems);
+      return{cartItems};
+    }
+
+    )
+  }
+
   render(){
   return (
     <div className="container">
@@ -69,7 +111,7 @@ class App extends React.Component {
        </div>
 
         <div className = 'col-md-4'>
-          <Basket cartItems = {this.state.cartItems} />
+          <Basket cartItems = {this.state.cartItems} handleRemoveFromCart = {this.handleRemoveFromCart} />
         </div>
       </div>
     </div>
