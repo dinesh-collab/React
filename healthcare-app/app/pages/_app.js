@@ -1,24 +1,45 @@
-// pages/_app.js
-import React, { useEffect } from 'react';
-import '../styles/globals.css';
+import React from 'react';
+import { SafeAreaView, Text, Button, View, StyleSheet } from 'react-native';
+import useCustomStatusBar from './src/useCustomStatusBar';
 
-function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js').then(
-          (registration) => {
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-          },
-          (error) => {
-            console.log('ServiceWorker registration failed: ', error);
-          }
-        );
-      });
-    }
-  }, []);
+const App = () => {
+  const [statusBarColor, setStatusBarColor] = useCustomStatusBar();
 
-  return <Component {...pageProps} />;
-}
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.content}>
+        <Text style={styles.title}>Custom Status Bar Hook</Text>
+        <Button
+          title="Change Status Bar Color to Blue"
+          onPress={() => setStatusBarColor('#0000FF')}
+        />
+        <Button
+          title="Change Status Bar Color to Red"
+          onPress={() => setStatusBarColor('#FF0000')}
+        />
+        <Button
+          title="Reset Status Bar Color"
+          onPress={() => setStatusBarColor(null)}
+        />
+      </View>
+    </SafeAreaView>
+  );
+};
 
-export default MyApp;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  content: {
+    width: '80%',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 20,
+    marginBottom: 20,
+  },
+});
+
+export default App;
