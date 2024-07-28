@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react';
+import TaskForm from './components/TaskForm';
+import TaskList from './components/TaskList';
+import { TaskContext } from './context/TaskContext';
 
-function App() {
+const App = () => {
+  const { setFilter } = useContext(TaskContext);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Task Manager</h1>
+      <TaskForm />
+      <div>
+        <button onClick={() => setFilter('all')}>All</button>
+        <button onClick={() => setFilter('pending')}>Pending</button>
+        <button onClick={() => setFilter('completed')}>Completed</button>
+      </div>
+      <TaskList />
     </div>
   );
-}
+};
 
 export default App;
