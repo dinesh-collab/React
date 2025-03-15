@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Projects</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.project-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #8e9398;
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    background: #056849;
+}
+
+.project-card i {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+    </style>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>React Projects</h1>
+        <div class="projects-grid">
+            <script>
+                const projects = [
+                    { name: "COVID-19 Tracker", path: "covid-19_tracker", icon: "fa-virus" },
+                    { name: "E-commerce Shopping Cart", path: "ecommerse-shopping-cart", icon: "fa-shopping-cart" },
+                    { name: "Face Detection", path: "facedetection", icon: "fa-smile" },
+                    { name: "Friends App", path: "friends-react", icon: "fa-user-friends" },
+                    { name: "Healthcare App", path: "healthcare-app", icon: "fa-heartbeat" },
+                    { name: "Status Bar Config", path: "status-bar-config-based-on-route", icon: "fa-route" },
+                    { name: "Task Management App", path: "task-management-app", icon: "fa-tasks" },
+                    { name: "Task Manager", path: "task-manager", icon: "fa-list-check" }
+                ];
+
+                document.write(
+                    projects.map(proj => `
+                        <a href="https://dinesh-collab.github.io/React/${proj.path}/" class="project-card">
+                            <i class="fa ${proj.icon}"></i>
+                            <span>${proj.name}</span>
+                        </a>
+                    `).join("")
+                );
+            </script>
+        </div>
+    </div>
+</body>
+</html>
